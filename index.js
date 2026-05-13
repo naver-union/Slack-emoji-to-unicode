@@ -18,7 +18,7 @@ function focusHidden() {
 }
 
 function handlePaste(event) {
-    console.log("Handle paste");
+    document.getElementById('hiddenInput').value = "";
     setTimeout(() => {
         const hiddenVal = document.getElementById('hiddenInput').value;
         // 숨겨진 값을 보이는 창에도 동기화 (사용자 확인용)
