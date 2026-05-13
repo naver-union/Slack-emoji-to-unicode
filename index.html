@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <script type="module" src="index.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 15px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .main-layout {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 400px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            resize: none;
+            outline: none;
+        }
+
+        /* 화면에 보이는 가짜 입력창 (클릭 시 숨겨진 창으로 포커스 토스) */
+        #displayInput {
+            background-color: #f0f0f0;
+            cursor: pointer;
+            color: #666;
+            border-style: dashed;
+        }
+
+        #displayInput:focus {
+            border-color: #4A154B;
+            background-color: #f5f0f6;
+        }
+
+        /* 실제 붙여넣기를 받을 숨겨진 텍스트 영역 */
+        #hiddenInput {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+        }
+
+        /* 출력창 (편집 가능) */
+        #output {
+            background-color: #ffffff;
+            border: 2px solid #4A154B;
+        }
+
+        .label-convert {
+            padding: 10px 20px;
+            font-weight: bold;
+            align-self: center;
+        }
+
+        .btn-copy {
+            padding: 4px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            background: #eee;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .status-msg {
+            font-size: 11px;
+            color: #888;
+            margin-top: 5px;
+        }
+        .toast {
+            visibility: hidden; /* 평소에는 숨김 */
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%); /* 가운데 정렬 */
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main-layout">
+            <div class="column">
+                <div class="label">입력 (여기를 클릭 후 붙여넣기)</div>
+                <textarea id="displayInput" readonly placeholder="여기를 클릭하고 '붙여넣기' 하세요. 직접 타이핑은 차단됩니다."></textarea>
+                <textarea id="hiddenInput"></textarea>
+            </div>
+
+            <div style="display: flex; align-self: center;">
+                <div class="label-convert">➔</div>
+            </div>
+
+            <div class="column">
+                <div class="label">
+                    결과 (편집 가능)
+                    <button id="copyBtn" class="btn-copy" onclick="handleCopy()">결과 복사</button>
+                    <div id="toast" class="toast">복사되었습니다!</div>
+                </div>
+                <textarea id="output" placeholder="변환된 결과가 여기에 표시됩니다."></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
