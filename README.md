@@ -88,4 +88,4 @@ inputText.replace(shortcodeRegex, (match) => {
 
 ## 라이선스
 
-MIT License (가정 — 원본 리포지토리에 라이선스 파일이 없는 경우 별도 확인 필요)
+[MIT License](LICENSE)
