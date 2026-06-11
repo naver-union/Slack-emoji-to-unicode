@@ -1052,6 +1052,8 @@
             ":cloud_with_lightning_and_rain:": "⛈️",
             ":sun_behind_small_cloud:": "🌤",
             ":sun_behind_large_cloud:": "🌥",
+            ":partly_sunny:": "🌥":,
+            ":partly_sunny_rain:": "🌦",
             ":sun_behind_rain_cloud:": "🌦",
             ":cloud_with_rain:": "🌧",
             ":rain_cloud:": "🌧",
